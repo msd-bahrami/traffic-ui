@@ -1,0 +1,30 @@
+@if (errorMessage) {
+  <p class="alert-danger mt-5">{{ errorMessage }}</p>
+} @else {
+  <p class="mt-5">Registered applicants:</p>
+
+  <ul class="list-group list-group align-items-center mt-5">
+    <li class="row list-group-item w-100" style="background-color: aliceblue">
+      <span class="col-sm-4 d-inline-block">Full Name</span>
+      <span class="col-sm-5 d-inline-block">Email</span>
+      <span class="col-sm-2 d-inline-block">Birth Date</span>
+    </li>
+  </ul>
+
+  <ul class="list-group list-group-flush align-items-center">
+    @for (applicant of applicants;track applicant.id) {
+      <li class="row list-group-item w-100">
+      <span class="col-sm-4 d-inline-block">
+        {{ applicant.firstName }}, {{ applicant.lastName }}
+      </span>
+        <span class="col-sm-5 d-inline-block">
+        {{ applicant.username }}
+      </span>
+        <span class="col-sm-2 d-inline-block">
+        {{ applicant.dob | date: 'mediumDate' }}
+      </span>
+      </li>
+    }
+  </ul>
+
+}

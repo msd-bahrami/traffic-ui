@@ -1,0 +1,85 @@
+<div class="container-fluid ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-lg-flex col-lg-5 login-image"></div>
+    <div class="col-lg-6">
+      <div class="signup d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row d-lg-none login-image"></div>
+          <div class="row">
+            <div class="col-md-10 col-lg-10 mx-auto">
+              <h3 class="login-heading mb-4">Fill the following form to register</h3>
+              <div class="alert-danger mb-3">{{ error }}</div>
+              <!-- Sign Up Form -->
+              <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                <div class="row">
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="firstName" type="text" formControlName="firstName" placeholder="First Name" class="form-control">
+                    <label for="firstName" style="margin-left: 12px;">First Name</label>
+                  </div>
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="lastName" type="text" formControlName="lastName" placeholder="Last Name" class="form-control">
+                    <label for="lastName" style="margin-left: 12px;">Last Name</label>
+                  </div>
+                </div>
+                <div class="form-floating mb-2">
+                  <input id="email" type="email" formControlName="email" placeholder="name@example.com" class="form-control">
+                  <label for="email">Email address</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <input id="password" type="password" formControlName="password" placeholder="Password" class="form-control">
+                  <label for="password">Password</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <input id="address" type="text" formControlName="address" placeholder="Address" class="form-control">
+                  <label for="address">Address</label>
+                </div>
+                <div class="row">
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="apartment" type="text" formControlName="apartment" placeholder="Apartment" class="form-control">
+                    <label for="apartment" style="margin-left: 12px;">Apartment</label>
+                  </div>
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="postcode" type="text" formControlName="postcode" placeholder="Post Code" class="form-control">
+                    <label for="postcode" style="margin-left: 12px;">Post Code</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="country" type="text" formControlName="country" placeholder="Country" class="form-control">
+                    <label for="country" style="margin-left: 12px;">Country</label>
+                  </div>
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="phone" type="tel" formControlName="phone" placeholder="Phone" class="form-control">
+                    <label for="phone" style="margin-left: 12px;">Phone</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="state" type="text" formControlName="state" placeholder="State" class="form-control">
+                    <label for="state" style="margin-left: 12px;">State</label>
+                  </div>
+                  <div class="form-floating mb-2 col-md-6">
+                    <input id="city" type="text" formControlName="city" placeholder="City" class="form-control">
+                    <label for="city" style="margin-left: 12px;">City</label>
+                  </div>
+                </div>
+                <div class="form-floating mb-2">
+                  <input id="civilNumber" type="text" formControlName="civilNumber" placeholder="Civil Number" class="form-control">
+                  <label for="civilNumber">Civil Number</label>
+                </div>
+
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign up</button>
+                  <div class="text-center">
+                    <a class="small" routerLink="/login">Sign in</a>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

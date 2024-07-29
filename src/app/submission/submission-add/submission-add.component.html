@@ -1,0 +1,18 @@
+<form [formGroup]="submissionForm" (ngSubmit)="submit()">
+
+  <div class="form-floating mb-3">
+    <select id="licenseType" formControlName="licenseType" placeholder="Remark" class="form-control">
+        <option *ngFor="let type of licenseTypes" [value]="type.id">{{ type.id }} - {{ type.description }}</option>
+    </select>
+    <label for="licenseType">License Type</label>
+  </div>
+  <div class="form-floating mb-3">
+    <textarea id="remark" formControlName="remark" placeholder="Remark" class="form-control"></textarea>
+    <label for="remark">Remark</label>
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-lg btn-primary btn-login mb-2 col-md-6" type="submit">Submit Application</button>
+  </div>
+
+</form>

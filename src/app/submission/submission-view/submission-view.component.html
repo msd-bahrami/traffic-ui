@@ -1,0 +1,94 @@
+@if (submission) {
+  <form class="col-md-10 mx-auto mt-5 align-items-center align-content-center">
+    <p class="p-2" style="background-color: aliceblue">Application details</p>
+    <div class="form-group row">
+      <label for="status" class="col-sm-3 col-form-label">Status</label>
+      <div class="col-sm-9">
+        <input type="text" readonly class="form-control-plaintext" id="status"
+          value="{{ submission.status }}">
+      </div>
+    </div>
+    <div class="form-group row">
+      <p class="col-md-3 col-form-label mb-md-0">License Type:</p>
+      <div class="col-md-9">
+        <p readonly class="form-control-plaintext col-form-label  mb-md-0">
+          {{ submission.licenseType }} ({{ getLicenseDescription(submission.licenseType) }})
+        </p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <p class="col-md-3 col-form-label mb-md-0">Application Date:</p>
+      <div class="col-md-9">
+        <p readonly class="form-control-plaintext mb-md-0">{{ submission.applicationDate | date: 'mediumDate' }}</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <p class="col-md-3 col-form-label mb-md-0">Remarks:</p>
+      <div class="col-md-9">
+        <p readonly class="form-control-plaintext mb-md-0">{{ submission.remarks }}</p>
+      </div>
+    </div>
+  </form>
+}
+
+@if (submission.applicant) {
+  <form class="col-md-10 mx-auto mt-5 align-items-center align-content-center">
+    <p class="p-2" style="background-color: aliceblue">Applicant details</p>
+  <div class="form-group row">
+    <label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+    <div class="col-sm-8">
+      <input type="text" readonly class="form-control-plaintext" id="firstName"
+        value="{{ submission.applicant.firstName }}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+    <div class="col-sm-8">
+      <input type="text" readonly class="form-control-plaintext" id="lastName"
+        value="{{ submission.applicant.lastName }}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="email" class="col-sm-3 col-form-label">Email</label>
+    <div class="col-sm-8">
+      <input type="text" readonly class="form-control-plaintext" id="email"
+        value="{{ submission.applicant.username }}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="dob" class="col-sm-3 col-form-label">Birth Date</label>
+    <div class="col-sm-8">
+      <input type="text" readonly class="form-control-plaintext" id="dob"
+        value="{{ submission.applicant.dob | date: 'mediumDate' }}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="applicantRemarks" class="col-sm-3 col-form-label">Remarks</label>
+    <div class="col-sm-8">
+      <textarea readonly class="form-control-plaintext" id="applicantRemarks"
+        value="{{ submission.applicant.remarks }}" rows="3"></textarea>
+    </div>
+  </div>
+
+  @switch (submission.status) {
+    @case (Status.PENDING) {
+      <button mat-flat-button type="button" class="btn bg-primary mx-2" (click)="updateStatus(Status.AWAITING_DOCUMENTS)">Request Documents</button>
+      <button mat-flat-button type="button" class="btn bg-success" (click)="updateStatus(Status.UNDER_REVIEW)">Submit for Review</button>
+    }
+    @case (Status.AWAITING_DOCUMENTS) {
+      <button mat-flat-button type="button" class="btn bg-success" (click)="updateStatus(Status.UNDER_REVIEW)">Submit for Review</button>
+    }
+    @case (Status.UNDER_REVIEW) {
+      <button mat-flat-button type="button" class="btn bg-danger mx-2" (click)="updateStatus(Status.REJECTED)">Reject</button>
+      <button mat-flat-button type="button" class="btn bg-success" (click)="updateStatus(Status.APPROVED)">Approve</button>
+    }
+    @case (Status.APPROVED) {
+      <button mat-flat-button type="button" class="btn bg-success" (click)="updateStatus(Status.COMPLETED)">Complete</button>
+    }
+    @default {
+    }
+  }
+
+</form>
+
+}

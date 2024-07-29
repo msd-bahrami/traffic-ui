@@ -1,0 +1,26 @@
+@if (errorMessage) {
+  <p class="alert-danger mt-5">{{ errorMessage }}</p>
+} @else {
+  <p class="mt-5">Registered users:</p>
+
+  <ul class="list-group list-group align-items-center mt-5">
+    <li class="row list-group-item w-100" style="background-color: aliceblue">
+      <span class="col-sm-4 d-inline-block">Full Name</span>
+      <span class="col-sm-6 d-inline-block">Email</span>
+    </li>
+  </ul>
+
+  <ul class="list-group list-group-flush align-items-center">
+    @for (user of users;track user.id) {
+      <li class="row list-group-item w-100">
+      <span class="col-sm-4 d-inline-block">
+        {{ user.firstName }}, {{ user.lastName }}
+      </span>
+        <span class="col-sm-6 d-inline-block">
+        {{ user.username }}
+      </span>
+      </li>
+    }
+  </ul>
+
+}
